@@ -36,8 +36,8 @@ element = driver.find_element(:name, 'username')
 element.send_keys "admin@example.com"
 element.submit
 element = driver.find_element(:name, 'password')
-#element.send_keys "puppet"
-element.send_keys '~!@#$%^*-/aZ'
+element.send_keys "puppet"
+#element.send_keys '~!@#$%^*-/aZ'
 element.submit
 
 if driver.title == "Puppet Node Manager"
