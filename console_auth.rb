@@ -7,6 +7,7 @@ require 'selenium-webdriver'
 exit 1 unless ENV['SAUCE_URL']
 config = ENV['CONFIG']
 dashboard=''
+fail_flag=0
 #hInfo = YAML.load_file './ubuntu1004-64mda.cfg'
 hInfo = YAML.load_file "config/#{config}"
 hInfo['HOSTS'].each_pair { |host,val|
@@ -43,7 +44,10 @@ if driver.title == "Puppet Node Manager"
   puts "Testcase 1 passed"
  else
   puts "Testcase 1 failed"
+  fail_flag=1
 end
 
 puts driver.title
 driver.quit
+
+return fail_flag
