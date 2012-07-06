@@ -50,4 +50,4 @@ end
 puts driver.title
 driver.quit
 
-return fail_flag
+exit fail_flag
