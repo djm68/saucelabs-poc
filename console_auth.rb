@@ -4,12 +4,13 @@ require 'yaml'
 require 'rubygems'
 require 'selenium-webdriver'
 
-exit 1 unless ENV['SAUCE_URL']
+exit 1 unless sauce_url = ENV['SAUCE_URL']
+passwd = ENV['PASSWD'] || passwd = '~!@#$%^*-/aZ'
 config = ENV['CONFIG']
 dashboard=''
 fail_flag=0
-#hInfo = YAML.load_file './ubuntu1004-64mda.cfg'
 hInfo = YAML.load_file "config/#{config}"
+
 hInfo['HOSTS'].each_pair { |host,val|
   puts "Host: #{host}"
   puts val.inspect
@@ -20,7 +21,6 @@ hInfo['HOSTS'].each_pair { |host,val|
 }
 
 caps = Selenium::WebDriver::Remote::Capabilities.send ENV['BROWSER']
-sauce_url =     ENV['SAUCE_URL']
 caps.version =  ENV['VERSION']
 caps.platform = ENV['PLATFORM'].to_sym
 caps[:name] = "Console Login Test"
@@ -36,8 +36,7 @@ element = driver.find_element(:name, 'username')
 element.send_keys "admin@example.com"
 element.submit
 element = driver.find_element(:name, 'password')
-element.send_keys "puppet"
-#element.send_keys '~!@#$%^*-/aZ'
+element.send_keys "#{passwd}"
 element.submit
 
 if driver.title == "Puppet Node Manager"
