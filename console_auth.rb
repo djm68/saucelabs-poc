@@ -23,7 +23,7 @@ hInfo['HOSTS'].each_pair { |host,val|
 caps = Selenium::WebDriver::Remote::Capabilities.send ENV['BROWSER']
 caps.version =  ENV['VERSION']
 caps.platform = ENV['PLATFORM'].to_sym
-caps[:name] = "Console Login Test"
+caps[:name] = "#{config} Console Login Test"
 
 driver = Selenium::WebDriver.for(
   :remote,
