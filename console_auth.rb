@@ -29,7 +29,7 @@ driver = Selenium::WebDriver.for(
   :remote,
   :url => sauce_url,
   :desired_capabilities => caps)
-driver.navigate.to "https://#{dashboard}"
+driver.navigate.to "https://#{dashboard}.puppetlabs.lan"
 
 # Login
 element = driver.find_element(:name, 'username')
