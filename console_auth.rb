@@ -30,7 +30,12 @@ driver = Selenium::WebDriver.for(
   :remote,
   :url => sauce_url,
   :desired_capabilities => caps)
-driver.navigate.to "https://#{dashboard}#{domain}"
+
+if ENV['APP_PATH']
+  driver.navigate.to "https://#{dashboard}#{domain}/#{ENV['APP_PATH']}"
+else
+  driver.navigate.to "https://#{dashboard}#{domain}"
+end
 
 # Login
 element = driver.find_element(:name, 'username')
@@ -42,7 +47,7 @@ element.submit
 
 if driver.title == "Puppet Node Manager"
   puts "Testcase 1 passed"
- else
+else
   puts "Testcase 1 failed"
   fail_flag=1
 end
