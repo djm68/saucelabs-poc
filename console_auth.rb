@@ -5,7 +5,7 @@ require 'rubygems'
 require 'selenium-webdriver'
 
 exit 1 unless sauce_url = ENV['SAUCE_URL']
-passwd = ENV['PASSWD'] || passwd = '~!@#$%^*-/aZ'
+passwd = ENV['PASSWD'] || passwd = '~!@$%^*-/aZ'
 domain = ENV['DOMAIN'] || domain = ''
 config = ENV['CONFIG']
 dashboard=''
